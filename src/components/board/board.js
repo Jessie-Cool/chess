@@ -25,9 +25,12 @@ function Board() {
         if (selectedX === x && selectedY === y) {
           selected = true;
         }
+
+        const pieceId = boardState[x][y];
         row.push(<Tile
           x={x}
           y={y}
+          pieceId={pieceId}
           selected={selected}
           handleTileClick={handleTileClick}
         />);

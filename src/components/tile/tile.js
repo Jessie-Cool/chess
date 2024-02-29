@@ -1,20 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TileWrapper } from './tile.styled';
+import './tile.css';
 
 function Tile(props) {
   const {
     x,
     y,
+    pieceId,
     selected,
     handleTileClick,
   } = props;
 
-  console.log(boardState);
-  const pieceId = x !== undefined && y !== undefined ? boardState[x + 1][y + 1] : 0;
   return (
     <TileWrapper
       data-testid="Tile"
+      className={selected ? 'selected' : ''}
       onClick={() => {
         handleTileClick([x, y]);
       }}

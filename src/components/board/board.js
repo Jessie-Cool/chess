@@ -1,19 +1,28 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { BoardWrapper } from './board.styled';
 import Tile from '../tile/tile';
 import boardDefaultState from '../../constants/boardDefaultState';
+import handleBoradClick from './handleclick';
 
 function Board() {
   const [boardState, setBoardState] = useState(boardDefaultState);
   const [selectedPiece, setSelectedPiece] = useState([0, 0]);
   // TODO set status to enum over string
-  const [turnStatus, setTurnStatus] = useState('startWhite');
+  const [turnStatus, setTurnStatus] = useState({
+    team: 'white',
+    phase: 'select',
+  });
 
-  const handleTileClick = (coords) => {
-    const [x, y] = coords;
-    setSelectedPiece([x, y]);
+  const stateObj = {
+    //state
+    boardState,
+    turnStatus,
+    //setters
+    setTurnStatus,
+    setSelectedPiece,
   };
+
+  const handleBoradClickWrapper = (coords) => (handleBoradClick(coords, stateObj));
 
   const renderBoard = () => {
     const board = [];
@@ -26,13 +35,13 @@ function Board() {
           selected = true;
         }
 
-        const pieceId = boardState[x][y];
+        const pieceId = boardState[x][y].id;
         row.push(<Tile
           x={x}
           y={y}
           pieceId={pieceId}
           selected={selected}
-          handleTileClick={handleTileClick}
+          handleTileClick={handleBoradClickWrapper}
         />);
       }
       board.push(

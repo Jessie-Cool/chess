@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { TileWrapper } from './tile.styled';
 import './tile.css';
 
@@ -10,12 +9,13 @@ function Tile(props) {
     pieceId,
     selected,
     handleTileClick,
+    moveTarget
   } = props;
 
   return (
     <TileWrapper
       data-testid="Tile"
-      className={selected ? 'selected' : ''}
+      className={`${selected ? 'selected' : ''} ${moveTarget ? 'move-target' : ''}`}
       onClick={() => {
         handleTileClick([x, y]);
       }}

@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 const defaultPieceValues = {
   team: 'none',
 };
@@ -16,12 +14,6 @@ export default (coords, stateObj) => {
     ...defaultPieceValues,
     ...boardState[x][y],
   };
-
-  useEffect(() => {
-    if(turnStatus === 'move'){
-        calculateMoveTargets()
-    }
-  })
 
   // select of same team
   if (turnStatus.team === piece.team && (turnStatus.phase === 'move' || turnStatus.phase === 'select')) {

@@ -1,3 +1,7 @@
 .selected {
     background-color: red;
 }
+
+.move-target {
+    background-color: blue;
+}
